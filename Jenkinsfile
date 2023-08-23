@@ -21,9 +21,15 @@ pipeline {
                 }
             }
         }
-        stage("Deploy"){
+        // stage("Deploy"){
+        //     steps{
+        //         sh "docker-compose down && docker-compose up -d"
+        //     }
+        // }
+        stage("Deployusingk8s "){
             steps{
-                sh "docker-compose down && docker-compose up -d"
+                sh "kubectl apply -f deployment.yaml"
+                sh "kubectl apply -f service.yaml"
             }
         }
     }
